@@ -1,0 +1,202 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Firstfigure</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Founders bury their best number on slide 15. Firstfigure moves it to slide 1 and rewrites your pitch for US investors. Free, no sign-up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow column; the deck strip is the only visual; everything else is type on paper. */
+:root {
+  --paper: #F7F7F4;      /* page */
+  --card: #FFFFFF;       /* slides, panels */
+  --ink: #15171C;        /* text, primary button */
+  --muted: #5B6069;      /* secondary text (AA on paper) */
+  --line: #DEDFDA;       /* hairlines */
+  --mark: #FFE14D;       /* highlighter: the number that matters */
+  --mark-ink: #15171C;
+  --slide: #ECEDE8;      /* empty slide fill */
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121317; --card: #1B1D22; --ink: #EEEEEA; --muted: #A3A7AE; --line: #2D3037;
+    --mark: #F2CF2E; --mark-ink: #121317; --slide: #24272D; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121317; --card: #1B1D22; --ink: #EEEEEA; --muted: #A3A7AE; --line: #2D3037;
+  --mark: #F2CF2E; --mark-ink: #121317; --slide: #24272D; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+
+/* nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+.logo { font-family: var(--f-display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; text-decoration: none; display: inline-flex; align-items: baseline; gap: 1px; }
+.logo .one { background: var(--mark); color: var(--mark-ink); padding: 0 3px; border-radius: 3px; margin-left: 1px; }
+.nav-link { font-size: 15px; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+.nav-link:hover { border-color: var(--ink); }
+
+/* hero */
+.hero { padding-block: 56px 32px; display: grid; gap: 22px; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; color: var(--muted); letter-spacing: 0.02em; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(36px, 6.4vw, 68px); line-height: 1.02; letter-spacing: -0.035em; margin: 0; max-width: 15ch; text-wrap: balance; }
+h1 .hl { background: linear-gradient(transparent 58%, var(--mark) 58%); padding: 0 2px; }
+.lead { font-size: clamp(17px, 2.1vw, 20px); color: var(--muted); max-width: 58ch; margin: 0; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 22px; border-radius: 999px; transition: transform .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+.risk { font-size: 14px; color: var(--muted); }
+
+/* deck strip: 15 slides, the metric moves from 15 to 1 */
+.deck { margin-top: 52px; }
+.strip { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 6px; position: relative; }
+.s { aspect-ratio: 4 / 3; background: var(--slide); border-radius: 4px; position: relative; display: flex; align-items: flex-end; padding: 4px; }
+.s span { font-family: var(--f-mono); font-size: 10px; color: var(--muted); line-height: 1; }
+.s.first { background: var(--card); outline: 1px solid var(--line); }
+.chip { position: absolute; top: -34px; left: 0; width: calc((100% - 84px) / 15 * 2 + 6px); min-width: 92px; background: var(--mark); color: var(--mark-ink);
+        font-family: var(--f-mono); font-size: 13px; font-weight: 500; padding: 6px 8px; border-radius: 6px; white-space: nowrap; text-align: center;
+        animation: move 1.6s cubic-bezier(.65,0,.25,1) .5s both; }
+.chip::after { content: ""; position: absolute; left: 14px; bottom: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: var(--mark); }
+@keyframes move { from { left: calc(100% - 92px); } to { left: 0; } }
+.deck-caption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .chip { animation: none; } .btn { transition: none; } }
+
+/* sections */
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 26px; text-wrap: balance; }
+
+/* before / after */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ba-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; min-width: 0; display: grid; gap: 12px; align-content: start; }
+.ba-label { font-family: var(--f-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.ba-card p { margin: 0; font-size: 16px; }
+.ba-card .dim { color: var(--muted); }
+.ba-card mark { background: var(--mark); color: var(--mark-ink); padding: 0 3px; border-radius: 3px; }
+.ba-foot { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+/* steps: a real sequence */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.steps li::before { content: counter(step); font-family: var(--f-mono); font-size: 13px; width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+.steps h3 { font-family: var(--f-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 4px 0 0; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* facts */
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 40px; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-weight: 600; }
+.facts dd { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+
+/* closing */
+.close { display: grid; gap: 18px; justify-items: start; }
+.close p { margin: 0; color: var(--muted); max-width: 56ch; }
+.text-link { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+.text-link:hover { text-decoration-color: var(--ink); }
+footer { border-top: 1px solid var(--line); padding-block: 26px 40px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; }
+footer strong { color: var(--ink); font-weight: 500; }
+.social { display: flex; gap: 20px; }
+.social a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+.social a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+
+@media (max-width: 720px) {
+  .hero { padding-block: 32px 24px; }
+  .ba, .steps, .facts { grid-template-columns: 1fr; }
+  .strip { gap: 3px; }
+  .s span { font-size: 8px; }
+  .s:nth-child(n+3):nth-child(-n+15) span { visibility: hidden; }
+  section { padding-block: 44px; }
+}
+</style>
+</head><body>
+
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top" aria-label="Firstfigure home">first<span class="one">figure</span></a>
+    <a class="nav-link" href="https://firstfigure.streamlit.app" target="_blank" rel="noopener">Open the tool</a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="eyebrow">For founders pitching US investors</div>
+    <h1>Your best number is on slide 15. <span class="hl">Move it to slide 1.</span></h1>
+    <p class="lead">Paste your pitch or upload a recording. Firstfigure scores it the way a US investor reads it, shows where your key metric hides, and rewrites the pitch in plain English.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://firstfigure.streamlit.app" target="_blank" rel="noopener">Check my pitch
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <span class="risk">Free. No sign-up. We don't keep your pitch.</span>
+    </div>
+
+    <div class="deck" aria-label="A 15-slide deck: the metric moves from slide 15 to slide 1">
+      <div class="strip">
+        <div class="chip">$38K MRR</div>
+        <div class="s first"><span>1</span></div><div class="s"><span>2</span></div><div class="s"><span>3</span></div><div class="s"><span>4</span></div><div class="s"><span>5</span></div>
+        <div class="s"><span>6</span></div><div class="s"><span>7</span></div><div class="s"><span>8</span></div><div class="s"><span>9</span></div><div class="s"><span>10</span></div>
+        <div class="s"><span>11</span></div><div class="s"><span>12</span></div><div class="s"><span>13</span></div><div class="s"><span>14</span></div><div class="s"><span>15</span></div>
+      </div>
+      <div class="deck-caption"><span>slide 1: what an investor reads first</span><span>slide 15: where founders put it</span></div>
+    </div>
+  </header>
+
+  <section aria-labelledby="ba-h">
+    <h2 id="ba-h">Same facts. Different first sentence.</h2>
+    <div class="ba">
+      <div class="ba-card">
+        <div class="ba-label">Before</div>
+        <p>We are FarmLink, a team of four friends from Almaty. We love technology and have been working on this idea for two years.</p>
+        <p class="dim">… six sentences later …</p>
+        <p>By the way, last month <mark>1,200 farmers paid</mark> for our app.</p>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label">After</div>
+        <p>Last month <mark>1,200 farmers paid</mark> for our app, and revenue grew 40% month over month.</p>
+        <p>FarmLink helps small farmers in Central Asia [ADD: what the app does for them].</p>
+      </div>
+    </div>
+    <p class="ba-foot">The rewrite uses only facts from your pitch. When something is missing, you get a blank to fill, not an invented number.</p>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">How it works</h2>
+    <ol class="steps">
+      <li><h3>Paste or record</h3><p>Text in English, Russian or Kazakh, or an audio or video file up to 3 minutes.</p></li>
+      <li><h3>Get a score out of 16</h3><p>Seven checks: the metric, the customer pain, the US link, the team, the ask. Each one points to a quote from your own text.</p></li>
+      <li><h3>Take the US version</h3><p>An English rewrite with your best number first, plus six questions an investor is likely to ask.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="why-h">
+    <h2 id="why-h">Why you can trust the score</h2>
+    <dl class="facts">
+      <div><dt>Every point has evidence</dt><dd>The AI must quote your pitch. Code checks the quote exists and decides the grade.</dd></div>
+      <div><dt>No invented facts</dt><dd>Numbers in the rewrite are checked against your original. Missing facts become blanks.</dd></div>
+      <div><dt>Nothing is stored</dt><dd>Your text and recording are used for the analysis and then dropped. No account, no database.</dd></div>
+      <div><dt>Made for Central Eurasia</dt><dd>Built for founders from Kazakhstan, Uzbekistan and the region. Feedback in English or Russian; Kazakh in beta.</dd></div>
+    </dl>
+  </section>
+
+  <section class="close" aria-labelledby="fb-h">
+    <h2 id="fb-h">This is an early prototype</h2>
+    <p>I'm testing it with founders now. Try it on your real pitch, then tell me what was wrong or missing. Two minutes of your feedback decides what gets built next.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://firstfigure.streamlit.app" target="_blank" rel="noopener">Check my pitch
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="text-link" id="feedback-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdKm9PpXFFILwmkM15_UN2JaRr8ytfl7NTPhv3n9xAHNMCdVA/viewform?usp=dialog" target="_blank" rel="noopener">Give feedback</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Built by <strong>Adilet Zhumat</strong></span>
+    <nav class="social" aria-label="Contact">
+      <a href="https://www.linkedin.com/in/adilet-zhumat-8a007a375/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/kasso34_/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+  </footer>
+</div>
+</body></html>
